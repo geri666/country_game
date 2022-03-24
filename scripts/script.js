@@ -15,6 +15,7 @@ $(document).ready(async function () {
 
 async function startGame() {
   guessesLeft = 5;
+  hints.length = 0;
   resetLabels();
 
   countries = await loadCountries(); // doesn't need to be called on new game tho ...
@@ -33,7 +34,10 @@ function guess() {
   guessesLeft--;
   document.getElementById("guessesLeftLbl").innerHTML =
     "guesses left: " + guessesLeft;
-  if (userGuess == currentCountry.name.common.toLowerCase()) {
+  if (
+    userGuess == currentCountry.name.common.toLowerCase() ||
+    userGuess == currentCountry.name.official.toLowerCase()
+  ) {
     countryGuessed();
   } else if (guessesLeft == 0) {
     allGuessesUsed();
@@ -55,13 +59,25 @@ function allGuessesUsed() {
   startGame();
 }
 
-async function addHint() {
-  hints.push(await getRegion());
-  hints.push(await getFirstLetter());
-  hints.push(await getSubregion());
+async function newHint() {
+  switch (hints.length) {
+    case 0:
+      hints.push("region: " + (await getRegion()));
+      break;
+    case 1:
+      hints.push(" first letter: " + (await getFirstLetter()));
+      break;
+    case 2:
+      hints.push(" subregion: " + (await getSubregion()));
+      break;
+    case 3:
+      hints.push(" short form: " + (await getShortForm()));
+      break;
+  }
   document.getElementById("hintOutput").innerHTML = hints;
 }
 
+// hints
 async function getRegion() {
   return currentCountry.region;
 }
@@ -74,9 +90,14 @@ async function getSubregion() {
   return currentCountry.subregion;
 }
 
+async function getShortForm(){
+  return currentCountry.cioc;
+}
+
 function resetLabels() {
   document.getElementById("userInput").value = "";
   document.getElementById("guessesLeftLbl").innerHTML =
     "guesses left: " + guessesLeft;
   document.getElementById("hintOutput").value = "";
+  document.getElementById("hintOutput").innerHTML = hints;
 }
