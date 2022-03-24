@@ -4,6 +4,10 @@ var guessesLeft;
 var hints = [];
 var score = 0;
 var streak = 0;
+var called = false;
+var called1 = false;
+var called2 = false;
+var called3 = false;
 
 async function loadCountries() {
   let response = await fetch("https://restcountries.com/v3.1/all");
@@ -22,7 +26,7 @@ async function startGame() {
 
   countries = await loadCountries(); // doesn't need to be called on new game tho ...
   currentCountry = countries[getRandomInt(countries.length)]; // loads new country
-
+  minusHintPoint();
   document.getElementById("flagContainer").src = currentCountry.flags.png;
   document.getElementById("scoreLbl").innerHTML = "Score: " + score;
   console.log(currentCountry.name.common);
@@ -60,6 +64,7 @@ function countryGuessed() {
   );
 
   score = score + 100 * (guessesLeft + streak);
+ 
   streak++;
 
   startGame();
@@ -71,18 +76,23 @@ function allGuessesUsed() {
 }
 
 async function newHint() {
+
   switch (hints.length) {
     case 0:
       hints.push("region: " + (await getRegion()));
+      called = true;
       break;
     case 1:
       hints.push(" first letter: " + (await getFirstLetter()));
+      called1 = true;
       break;
     case 2:
       hints.push(" subregion: " + (await getSubregion()));
+      called2 = true;
       break;
     case 3:
       hints.push(" short form: " + (await getShortForm()));
+      called3 = true;
       break;
   }
   document.getElementById("hintOutput").innerHTML = hints;
@@ -115,4 +125,24 @@ function resetLabels() {
     "guesses left: " + guessesLeft;
   document.getElementById("hintOutput").value = "";
   document.getElementById("hintOutput").innerHTML = hints;
+}
+
+function minusHintPoint(){
+  if(called == true){
+    score = score - 50;
+    called = false;
+  }
+  if(called1 == true){
+    score = score - 50;
+    called = false;
+  }
+  if(called2 == true){
+    score = score - 50;
+    called = false;
+  }
+  if(called3 == true){
+    score = score - 50;
+    called = false;
+  }
+
 }
