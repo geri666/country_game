@@ -15,6 +15,8 @@ $(document).ready(async function () {
 async function startGame() {
   guessesLeft = 5;
   document.getElementById("userInput").value = "";
+  document.getElementById("hintlbl").innerHTML = "";
+  document.getElementById("hintlbl2").innerHTML = "";
 
   countries = await loadCountries(); // doesn't need to be called on new game tho ... 
   currentCountry = countries[getRandomInt(countries.length)]; // loads new country
@@ -38,20 +40,27 @@ function guess() {
   document.getElementById("userInput").value = "";
 }
 
-function countryGuessed(){
-    console.log("congratulations! you guessed the country with " + guessesLeft + " guesses left.");
-    startGame();
+function countryGuessed() {
+  console.log("congratulations! you guessed the country with " + guessesLeft + " guesses left.");
+  startGame();
 
 }
 
-async function getRegion(){
+async function getRegion() {
   let region = currentCountry.region;
   return region;
 }
 
-async function setHint(){
-  var currentRegion = await getRegion();
-    document.getElementById("hintlbl").innerHTML= currentRegion;
 
+
+async function setHint() {
+  var currentRegion = await getRegion();
+  document.getElementById("hintlbl").innerHTML = currentRegion;
 }
 
+
+async function set2ndHint() {
+  let name = currentCountry.name.common;
+  document.getElementById('hintlbl2').innerHTML = name.charAt(0);
+  
+}
