@@ -14,11 +14,7 @@ $(document).ready(async function () {
 
 async function startGame() {
   guessesLeft = 5;
-  document.getElementById("userInput").value = "";
-  document.getElementById("guessesLeftLbl").innerHTML = "guesses left: " + guessesLeft;
-  document.getElementById("hintlbl").innerHTML = "";
-  document.getElementById("hintlbl2").innerHTML = "";
-
+  resetLabels();
 
   countries = await loadCountries(); // doesn't need to be called on new game tho ...
   currentCountry = countries[getRandomInt(countries.length)]; // loads new country
@@ -34,7 +30,8 @@ function getRandomInt(max) {
 function guess() {
   let userGuess = document.querySelector("#userInput").value.toLowerCase();
   guessesLeft--;
-  document.getElementById("guessesLeftLbl").innerHTML = "guesses left: " + guessesLeft;
+  document.getElementById("guessesLeftLbl").innerHTML =
+    "guesses left: " + guessesLeft;
   if (userGuess == currentCountry.name.common.toLowerCase()) {
     countryGuessed();
   } else if (guessesLeft == 0) {
@@ -62,16 +59,21 @@ async function getRegion() {
   return region;
 }
 
-
-
 async function setHint() {
   var currentRegion = await getRegion();
   document.getElementById("hintlbl").innerHTML = "Region: " + currentRegion;
 }
 
-
 async function set2ndHint() {
   let name = currentCountry.name.common;
-  document.getElementById('hintlbl2').innerHTML = "First letter: "+ name.charAt(0);
-  
+  document.getElementById("hintlbl2").innerHTML =
+    "First letter: " + name.charAt(0);
+}
+
+function resetLabels() {
+  document.getElementById("userInput").value = "";
+  document.getElementById("guessesLeftLbl").innerHTML =
+    "guesses left: " + guessesLeft;
+  document.getElementById("hintlbl").innerHTML = "";
+  document.getElementById("hintlbl2").innerHTML = "";
 }
