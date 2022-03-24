@@ -1,0 +1,21 @@
+:root {
+    --main-bg-color: rgb(30, 30, 30);
+    --main-text-color: rgb(230, 230, 230);
+}
+
+@font-face {
+    font-family: mainfont;
+    src: url(../fonts/rockford_sans/RockfordSans-Light.otf);
+}
+
+body {
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+    text-align: center;
+    font-family: mainfont;
+    font-weight: bold;
+}
+
+h1 {
+    padding: 0.5em;
+}
