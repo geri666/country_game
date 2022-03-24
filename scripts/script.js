@@ -77,6 +77,10 @@ async function newHint() {
   document.getElementById("hintOutput").innerHTML = hints;
 }
 
+function fillCorrCountry(){
+  document.getElementById("userInput").value = currentCountry.name.common;
+}
+
 // hints
 async function getRegion() {
   return currentCountry.region;
