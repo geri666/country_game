@@ -41,4 +41,16 @@ function guess() {
 function countryGuessed(){
     console.log("congratulations! you guessed the country with " + guessesLeft + " guesses left.");
     startGame();
+
+
+async function getRegion(){
+  let region = currentCountry.region;
+  return region;
 }
+
+async function setHint(){
+  var currentRegion = await getRegion();
+    document.getElementById("hintlbl").innerHTML= currentRegion ;
+
+
+
