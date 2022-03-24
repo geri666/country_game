@@ -2,6 +2,7 @@ var countries;
 var currentCountry;
 var guessesLeft;
 var score = 0;
+var streak = 0;
 
 async function loadCountries() {
   let response = await fetch("https://restcountries.com/v3.1/all");
@@ -21,6 +22,7 @@ async function startGame() {
   currentCountry = countries[getRandomInt(countries.length)]; // loads new country
 
   document.getElementById("flagContainer").src = currentCountry.flags.png;
+  document.getElementById("scoreLbl").innerHTML = "Score: " + score;
   console.log(currentCountry.name.common);
 }
 
@@ -30,13 +32,18 @@ function getRandomInt(max) {
 
 function guess() {
   let userGuess = document.querySelector("#userInput").value.toLowerCase();
-  guessesLeft--;
-  document.getElementById("guessesLeftLbl").innerHTML =
-    "guesses left: " + guessesLeft;
+
   if (userGuess == currentCountry.name.common.toLowerCase()) {
     countryGuessed();
-  } else if (guessesLeft == 0) {
+  } else if (guessesLeft == 1) {
     allGuessesUsed();
+    streak = 0;
+    score = 0;
+  }
+  else {
+    guessesLeft--;
+    document.getElementById("guessesLeftLbl").innerHTML =
+      "guesses left: " + guessesLeft;
   }
   document.getElementById("userInput").value = "";
 }
@@ -47,9 +54,10 @@ function countryGuessed() {
     guessesLeft +
     " guesses left."
   );
-  
-  score = score + 100 * (guessesLeft + 1);
-  
+
+  score = score + 100 * (guessesLeft + streak);
+  streak++;
+
   startGame();
 }
 
