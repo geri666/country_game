@@ -1,6 +1,7 @@
 var countries;
 var currentCountry;
 var guessesLeft;
+var hints = [];
 
 async function loadCountries() {
   let response = await fetch("https://restcountries.com/v3.1/all");
@@ -54,26 +55,28 @@ function allGuessesUsed() {
   startGame();
 }
 
+async function addHint() {
+  hints.push(await getRegion());
+  hints.push(await getFirstLetter());
+  hints.push(await getSubregion());
+  document.getElementById("hintOutput").innerHTML = hints;
+}
+
 async function getRegion() {
-  let region = currentCountry.region;
-  return region;
+  return currentCountry.region;
 }
 
-async function setHint() {
-  var currentRegion = await getRegion();
-  document.getElementById("hintlbl").innerHTML = "Region: " + currentRegion;
+async function getFirstLetter() {
+  return currentCountry.name.common.charAt(0).toUpperCase();
 }
 
-async function set2ndHint() {
-  let name = currentCountry.name.common;
-  document.getElementById("hintlbl2").innerHTML =
-    "First letter: " + name.charAt(0);
+async function getSubregion() {
+  return currentCountry.subregion;
 }
 
 function resetLabels() {
   document.getElementById("userInput").value = "";
   document.getElementById("guessesLeftLbl").innerHTML =
     "guesses left: " + guessesLeft;
-  document.getElementById("hintlbl").innerHTML = "";
-  document.getElementById("hintlbl2").innerHTML = "";
+  document.getElementById("hintOutput").value = "";
 }
