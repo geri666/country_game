@@ -66,12 +66,12 @@ async function getRegion() {
 
 async function setHint() {
   var currentRegion = await getRegion();
-  document.getElementById("hintlbl").innerHTML = currentRegion;
+  document.getElementById("hintlbl").innerHTML = "Region: " + currentRegion;
 }
 
 
 async function set2ndHint() {
   let name = currentCountry.name.common;
-  document.getElementById('hintlbl2').innerHTML = name.charAt(0);
+  document.getElementById('hintlbl2').innerHTML = "First letter: "+ name.charAt(0);
   
 }
