@@ -25,7 +25,7 @@ h1 {
     max-height: auto;
 }
 
-#userInput {
+button {
     background-color: white;
     border-radius: 5px;
 }

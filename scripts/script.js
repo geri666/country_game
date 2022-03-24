@@ -16,7 +16,7 @@ async function startGame() {
   guessesLeft = 5;
   document.getElementById("userInput").value = "";
 
-  countries = await loadCountries(); // doesn't need to be called on new game tho ... 
+  countries = await loadCountries(); // doesn't need to be called on new game tho ...
   currentCountry = countries[getRandomInt(countries.length)]; // loads new country
 
   document.getElementById("flagContainer").src = currentCountry.flags.png;
@@ -29,29 +29,35 @@ function getRandomInt(max) {
 
 function guess() {
   let userGuess = document.querySelector("#userInput").value.toLowerCase();
-
+  guessesLeft--;
   if (userGuess == currentCountry.name.common.toLowerCase()) {
     countryGuessed();
-  } else {
-    guessesLeft--;
+  } else if (guessesLeft == 0) {
+    allGuessesUsed();
   }
   document.getElementById("userInput").value = "";
 }
 
-function countryGuessed(){
-    console.log("congratulations! you guessed the country with " + guessesLeft + " guesses left.");
-    startGame();
-
+function countryGuessed() {
+  alert(
+    "congratulations! you guessed the country with " +
+      guessesLeft +
+      " guesses left."
+  );
+  startGame();
 }
 
-async function getRegion(){
+function allGuessesUsed() {
+  alert("all your guesses used, new game started");
+  startGame();
+}
+
+async function getRegion() {
   let region = currentCountry.region;
   return region;
 }
 
-async function setHint(){
+async function setHint() {
   var currentRegion = await getRegion();
-    document.getElementById("hintlbl").innerHTML= currentRegion;
-
+  document.getElementById("hintlbl").innerHTML = currentRegion;
 }
-
