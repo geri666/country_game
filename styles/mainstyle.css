@@ -53,3 +53,27 @@ button {
     bottom: 0;
     width: 100%
 }
+
+.transparentButton {
+    color: transparent;
+    background-color: transparent;
+    border-color: transparent
+}
+
+#modalImg {
+    width: 100%
+}
+
+#rightGrid{
+    text-align: left;
+    padding: 2em
+}
+
+.modal-body {
+    text-align: left;
+    color: black
+}
+
+.modal-title {
+    color: black
+}

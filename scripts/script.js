@@ -28,7 +28,7 @@ async function startGame() {
   currentCountry = countries[getRandomInt(countries.length)]; // loads new country
   minusHintPoint();
   document.getElementById("flagContainer").src = currentCountry.flags.png;
-  document.getElementById("scoreLbl").innerHTML = "Score: " + score;
+  document.getElementById("scoreLbl").innerHTML = "score: " + score;
   console.log(currentCountry.name.common);
 }
 
@@ -47,8 +47,7 @@ function guess() {
     allGuessesUsed();
     streak = 0;
     score = 0;
-  }
-  else {
+  } else {
     guessesLeft--;
     document.getElementById("guessesLeftLbl").innerHTML =
       "guesses left: " + guessesLeft;
@@ -59,12 +58,12 @@ function guess() {
 function countryGuessed() {
   alert(
     "congratulations! you guessed the country with " +
-    guessesLeft +
-    " guesses left."
+      guessesLeft +
+      " guesses left."
   );
 
   score = score + 100 * (guessesLeft + streak);
- 
+
   streak++;
 
   startGame();
@@ -76,7 +75,6 @@ function allGuessesUsed() {
 }
 
 async function newHint() {
-
   switch (hints.length) {
     case 0:
       hints.push("region: " + (await getRegion()));
@@ -98,8 +96,12 @@ async function newHint() {
   document.getElementById("hintOutput").innerHTML = hints;
 }
 
-function fillCorrCountry(){
+function fillCorrCountry() {
   document.getElementById("userInput").value = currentCountry.name.common;
+}
+
+function loadModalImage() {
+  document.getElementById("modalImg").src = currentCountry.flags.svg;
 }
 
 // hints
@@ -115,7 +117,7 @@ async function getSubregion() {
   return currentCountry.subregion;
 }
 
-async function getShortForm(){
+async function getShortForm() {
   return currentCountry.cioc;
 }
 
@@ -127,22 +129,21 @@ function resetLabels() {
   document.getElementById("hintOutput").innerHTML = hints;
 }
 
-function minusHintPoint(){
-  if(called == true){
+function minusHintPoint() {
+  if (called == true) {
     score = score - 50;
     called = false;
   }
-  if(called1 == true){
+  if (called1 == true) {
     score = score - 50;
     called = false;
   }
-  if(called2 == true){
+  if (called2 == true) {
     score = score - 50;
     called = false;
   }
-  if(called3 == true){
+  if (called3 == true) {
     score = score - 50;
     called = false;
   }
-
 }
