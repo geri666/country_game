@@ -24,3 +24,13 @@ h1 {
     max-width: 250px;
     max-height: auto;
 }
+
+#userInput {
+    background-color: white;
+    border-radius: 5px;
+}
+
+#submitButton {
+    background-color: white;
+    border-radius: 5px;
+}
