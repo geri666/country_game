@@ -1,6 +1,7 @@
 var countries;
 var currentCountry;
 var guessesLeft;
+var score = 0;
 
 async function loadCountries() {
   let response = await fetch("https://restcountries.com/v3.1/all");
@@ -43,9 +44,12 @@ function guess() {
 function countryGuessed() {
   alert(
     "congratulations! you guessed the country with " +
-      guessesLeft +
-      " guesses left."
+    guessesLeft +
+    " guesses left."
   );
+  
+  score = score + 100 * (guessesLeft + 1);
+  
   startGame();
 }
 
