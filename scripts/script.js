@@ -17,3 +17,16 @@ $(document).ready(async function () {
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
+
+
+async function getRegion(){
+  let region = currentCountry.region;
+  return region;
+}
+
+async function setHint(){
+  var currentRegion = await getRegion();
+    document.getElementById("hintlbl").innerHTML= currentRegion ;
+
+
+}
