@@ -8,6 +8,8 @@ var called = false;
 var called1 = false;
 var called2 = false;
 var called3 = false;
+const MAPS_URL = "https://www.google.ch/maps/place/";
+var myModal = document.getElementById("myModal");
 
 async function loadCountries() {
   let response = await fetch("https://restcountries.com/v3.1/all");
@@ -56,21 +58,38 @@ function guess() {
 }
 
 function countryGuessed() {
-  alert(
-    "congratulations! you guessed the country with " +
-      guessesLeft +
-      " guesses left."
-  );
-
+  document.getElementById("afterGameTitle").innerHTML = "country guessed!";
+  document.getElementById("afterGameMain").innerHTML =
+    "it took you " +
+    guessesLeft +
+    " to guess " +
+    currentCountry.name.common.toLowerCase();
+  document.getElementById("afterGameMain").innerHTML +=
+    " <br> open with google maps:<br>" +
+    "<a id='linkButBlack' href ='https://www.google.ch/maps/place/" +
+    currentCountry.name.common +
+    "' target='_blank'>https://www.google.ch/maps/place/" +
+    currentCountry.name.common +
+    "<a>"; // what on earth is this ...
+  $("#myModal").modal("show");
   score = score + 100 * (guessesLeft + streak);
-
   streak++;
-
   startGame();
 }
 
 function allGuessesUsed() {
-  alert("all your guesses used, new game started");
+  document.getElementById("afterGameTitle").innerHTML =
+    "aw! you'll get it next time";
+  document.getElementById("afterGameMain").innerHTML =
+    "the country was " + currentCountry.name.common.toLowerCase();
+  document.getElementById("afterGameMain").innerHTML +=
+    " <br> open with google maps:<br>" +
+    "<a id='linkButBlack' href ='https://www.google.ch/maps/place/" +
+    currentCountry.name.common +
+    "' target='_blank'>https://www.google.ch/maps/place/" +
+    currentCountry.name.common +
+    "<a>";
+  $("#myModal").modal("show");
   startGame();
 }
 

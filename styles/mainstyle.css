@@ -86,3 +86,11 @@ hr {
 .modal-title {
     color: black
 }
+
+#linkButBlack{
+    color: black
+}
+
+#linkButBlack:hover{
+    color: purple
+}

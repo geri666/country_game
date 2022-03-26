@@ -58,16 +58,14 @@
         <div class="col" id="footer">
             <hr>
             <p>2022, by g. szijarto and a. baumgartner</p>
-            <p><a href="https://github.com/geri666">https://github.com/geri666</a> <br> <a
-                    href="https://github.com/flylikeale">https://github.com/flylikeale</a></p>
+            <p><a href="https://github.com/geri666" target="_blank">https://github.com/geri666</a> <br> <a
+                    href="https://github.com/flylikeale" target="_blank">https://github.com/flylikeale</a></p>
         </div>
 
         <div class="col"></div>
     </div>
 
-
-
-    <!--two pop up windows-->
+    <!--all pop up windows-->
     <div class="modal fade" id="smallModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -94,6 +92,24 @@
             <div class="modal-content">
                 <div class="modal-body">
                     <img id="modalImg">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--after game modal-->
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="afterGameTitle"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="afterGameMain"></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
