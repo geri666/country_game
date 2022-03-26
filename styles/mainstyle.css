@@ -17,7 +17,8 @@ body {
 }
 
 h1 {
-    padding: 0.5em
+    display: inline-block;
+    padding-top: 0.5em
 }
 
 a {
@@ -29,14 +30,28 @@ a:hover {
     color: purple
 }
 
-#flagContainer {
-    max-width: 250px;
-    max-height: auto
-}
-
 button {
     background-color: white;
     border-radius: 5px
+}
+
+hr {
+    border: none
+}
+
+.col {
+    position: relative;
+}
+
+.smallButton {
+    position: absolute;
+    right: 0;
+    top: 30%
+}
+
+#flagContainer {
+    max-width: 250px;
+    max-height: auto
 }
 
 #userInput {
@@ -48,10 +63,9 @@ button {
     width: 100px
 }
 
-.footer {
+#footer {
     position: absolute;
-    bottom: 0;
-    width: 100%
+    bottom: 0
 }
 
 .transparentButton {
@@ -62,11 +76,6 @@ button {
 
 #modalImg {
     width: 100%
-}
-
-#rightGrid{
-    text-align: left;
-    padding: 2em
 }
 
 .modal-body {

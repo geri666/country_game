@@ -17,6 +17,57 @@
 </head>
 
 <body>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col"></div>
+
+            <div class="col">
+                <h1>flagle</h1>
+                <button type="button" class="smallButton" data-bs-toggle="modal" data-bs-target="#smallModal">
+                    ❔
+                </button>
+                <hr>
+            </div>
+
+            <div class="col"></div>
+        </div>
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <button type="button" class="transparentButton" onclick="loadModalImage()" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    <img id="flagContainer"> <br> <br>
+                </button> <br> <br>
+                <a id="guessesLeftLbl"></a> <br>
+                <label id="scoreLbl"></label> <br>
+                <input type="text" id="userInput" placeholder="guess here" ondblclick="fillCorrCountry()">
+                <button id="submitButton" onclick="guess()">guess</button> <br> <br>
+                <button id="hint" onclick="newHint()">hint</button> <br>
+                <a id="hintOutput"></a>
+
+            </div>
+            <div class="col-1"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col"></div>
+
+        <div class="col" id="footer">
+            <hr>
+            <p>2022, by g. szijarto and a. baumgartner</p>
+            <p><a href="https://github.com/geri666">https://github.com/geri666</a> <br> <a
+                    href="https://github.com/flylikeale">https://github.com/flylikeale</a></p>
+        </div>
+
+        <div class="col"></div>
+    </div>
+
+
+
+    <!--two pop up windows-->
     <div class="modal fade" id="smallModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -50,44 +101,6 @@
             </div>
         </div>
     </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col">
-
-            </div>
-            <div class="col-4">
-
-                <h1>flagle</h1>
-
-                <button type="button" class="transparentButton" onclick="loadModalImage()" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">
-                    <img id="flagContainer"> <br> <br>
-                </button> <br> <br>
-                <a id="guessesLeftLbl"></a> <br>
-                <label id="scoreLbl"></label> <br>
-                <input type="text" id="userInput" placeholder="guess here" ondblclick="fillCorrCountry()">
-                <button id="submitButton" onclick="guess()">guess</button> <br> <br>
-                <button id="hint" onclick="newHint()">hint</button> <br>
-                <a id="hintOutput"></a>
-
-            </div>
-            <div class="col" id="rightGrid">
-                <button type="button" class="smallButton" data-bs-toggle="modal" data-bs-target="#smallModal">
-                    rules
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <div class="footer">
-        <hr> <br>
-        <p>2022, by g. szijarto and a. baumgartner</p>
-        <p><a href="https://github.com/geri666">https://github.com/geri666</a> <br> <a
-                href="https://github.com/flylikeale">https://github.com/flylikeale</a></p>
-    </div>
-
-
 
 </body>
 
