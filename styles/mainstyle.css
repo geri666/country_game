@@ -40,13 +40,27 @@ hr {
 }
 
 .col {
-    position: relative;
+    position: relative
+}
+
+.map {
+    text-align: center
 }
 
 .smallButton {
     position: absolute;
     right: 0;
     top: 30%
+}
+
+.transparentButton {
+    color: transparent;
+    background-color: transparent;
+    border-color: transparent
+}
+
+.pop-up-text{
+    font-weight: 100
 }
 
 #flagContainer {
@@ -68,12 +82,6 @@ hr {
     bottom: 0
 }
 
-.transparentButton {
-    color: transparent;
-    background-color: transparent;
-    border-color: transparent
-}
-
 #modalImg {
     width: 100%
 }
@@ -87,10 +95,10 @@ hr {
     color: black
 }
 
-#linkButBlack{
+#linkButBlack {
     color: black
 }
 
-#linkButBlack:hover{
+#linkButBlack:hover {
     color: purple
 }

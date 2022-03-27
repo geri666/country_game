@@ -125,7 +125,7 @@ function showMap() {
   // ty! https://stackoverflow.com/a/36801105
   var country = currentCountry.name.common;
   var embed =
-    "<iframe width='425' height='350' frameborder='0'scrolling='no' marginheight='0' marginwidth='0'src='https://maps.google.com/maps?&amp;q=" +
+    "<iframe width='300' height='400px' frameborder='0'scrolling='no' marginheight='0' marginwidth='0'src='https://maps.google.com/maps?&amp;q=" +
     encodeURIComponent(country) +
     "&amp;output=embed'></iframe>";
 
