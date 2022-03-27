@@ -11,34 +11,29 @@ var called3 = false;
 const MAPS_URL = "https://www.google.ch/maps/place/";
 var myModal = document.getElementById("myModal");
 
+$(document).ready(async function () {
+  countries = await loadCountries();
+  startGame();
+});
+
 async function loadCountries() {
   let response = await fetch("https://restcountries.com/v3.1/all");
   let data = await response.json();
   return data;
 }
 
-$(document).ready(async function () {
-  startGame();
-});
-
 async function startGame() {
   guessesLeft = 5;
   hints.length = 0;
   resetLabels();
 
-  countries = await loadCountries(); // doesn't need to be called on new game tho ...
-  currentCountry = countries[getRandomInt(countries.length)]; // loads new country
+  currentCountry = countries[getRandomInt(countries.length)];
   minusHintPoint();
-  document.getElementById("flagContainer").src = currentCountry.flags.png;
+  document.getElementById("flagContainer").src = currentCountry.flags.svg; // ty wiz you're the best
   document.getElementById("scoreLbl").innerHTML = "score: " + score;
-  console.log(currentCountry.name.common);
 }
 
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
-
-function guess() {
+function handleUserGuess() {
   let userGuess = document.querySelector("#userInput").value.toLowerCase();
   if (
     userGuess == currentCountry.name.common.toLowerCase() ||
@@ -47,12 +42,8 @@ function guess() {
     countryGuessed();
   } else if (guessesLeft == 1) {
     allGuessesUsed();
-    streak = 0;
-    score = 0;
   } else {
-    guessesLeft--;
-    document.getElementById("guessesLeftLbl").innerHTML =
-      "guesses left: " + guessesLeft;
+    decreaseGuessesByOne();
   }
   document.getElementById("userInput").value = "";
 }
@@ -62,7 +53,7 @@ function countryGuessed() {
   document.getElementById("afterGameMain").innerHTML =
     "it took you " +
     guessesLeft +
-    " to guess " +
+    " guesses to guess " +
     currentCountry.name.common.toLowerCase();
   document.getElementById("afterGameMain").innerHTML +=
     " <br> open with google maps:<br>" +
@@ -70,7 +61,7 @@ function countryGuessed() {
     currentCountry.name.common +
     "' target='_blank'>https://www.google.ch/maps/place/" +
     currentCountry.name.common +
-    "<a>"; // what on earth is this ...
+    "<a>";
   $("#myModal").modal("show");
   score = score + 100 * (guessesLeft + streak);
   streak++;
@@ -78,6 +69,8 @@ function countryGuessed() {
 }
 
 function allGuessesUsed() {
+  streak = 0;
+  score = 0;
   document.getElementById("afterGameTitle").innerHTML =
     "aw! you'll get it next time";
   document.getElementById("afterGameMain").innerHTML =
@@ -93,7 +86,13 @@ function allGuessesUsed() {
   startGame();
 }
 
-async function newHint() {
+function decreaseGuessesByOne() {
+  guessesLeft--;
+  document.getElementById("guessesLeftLbl").innerHTML =
+    "guesses left: " + guessesLeft;
+}
+
+async function newHint() { // maybe we can do this more efficiently we'll see idk
   switch (hints.length) {
     case 0:
       hints.push("region: " + (await getRegion()));
@@ -123,7 +122,6 @@ function loadModalImage() {
   document.getElementById("modalImg").src = currentCountry.flags.svg;
 }
 
-// hints
 async function getRegion() {
   return currentCountry.region;
 }
@@ -165,4 +163,8 @@ function minusHintPoint() {
     score = score - 50;
     called = false;
   }
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
 }
