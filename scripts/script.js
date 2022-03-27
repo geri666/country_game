@@ -55,16 +55,19 @@ function countryGuessed() {
     guessesLeft +
     " guesses to guess " +
     currentCountry.name.common.toLowerCase();
-  document.getElementById("afterGameMain").innerHTML +=
+  /*
+    document.getElementById("afterGameMain").innerHTML +=
     " <br> open with google maps:<br>" +
     "<a id='linkButBlack' href ='https://www.google.ch/maps/place/" +
     currentCountry.name.common +
     "' target='_blank'>https://www.google.ch/maps/place/" +
     currentCountry.name.common +
-    "<a>";
+    "<a>"; 
+    */
   $("#myModal").modal("show");
   score = score + 100 * (guessesLeft + streak);
   streak++;
+  showMap();
   startGame();
 }
 
@@ -75,14 +78,17 @@ function allGuessesUsed() {
     "aw! you'll get it next time";
   document.getElementById("afterGameMain").innerHTML =
     "the country was " + currentCountry.name.common.toLowerCase();
-  document.getElementById("afterGameMain").innerHTML +=
+  /*
+    document.getElementById("afterGameMain").innerHTML +=
     " <br> open with google maps:<br>" +
     "<a id='linkButBlack' href ='https://www.google.ch/maps/place/" +
     currentCountry.name.common +
     "' target='_blank'>https://www.google.ch/maps/place/" +
     currentCountry.name.common +
     "<a>";
+    */
   $("#myModal").modal("show");
+  showMap();
   startGame();
 }
 
@@ -92,7 +98,8 @@ function decreaseGuessesByOne() {
     "guesses left: " + guessesLeft;
 }
 
-async function newHint() { // maybe we can do this more efficiently we'll see idk
+async function newHint() {
+  // maybe we can do this more efficiently we'll see idk
   switch (hints.length) {
     case 0:
       hints.push("region: " + (await getRegion()));
@@ -112,6 +119,17 @@ async function newHint() { // maybe we can do this more efficiently we'll see id
       break;
   }
   document.getElementById("hintOutput").innerHTML = hints;
+}
+
+function showMap() {
+  // ty! https://stackoverflow.com/a/36801105
+  var country = currentCountry.name.common;
+  var embed =
+    "<iframe width='425' height='350' frameborder='0'scrolling='no' marginheight='0' marginwidth='0'src='https://maps.google.com/maps?&amp;q=" +
+    encodeURIComponent(country) +
+    "&amp;output=embed'></iframe>";
+
+  $("#place").html(embed);
 }
 
 function fillCorrCountry() {
