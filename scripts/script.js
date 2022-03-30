@@ -8,6 +8,8 @@ var called = false;
 var called1 = false;
 var called2 = false;
 var called3 = false;
+const checkbox = document.querySelector("#flexCheckChecked");
+checkbox.checked = true;
 const MAPS_URL = "https://www.google.ch/maps/place/";
 var myModal = document.getElementById("myModal");
 
@@ -64,10 +66,10 @@ function countryGuessed() {
     currentCountry.name.common +
     "<a>"; 
     */
-  $("#myModal").modal("show");
+
   score = score + 100 * (guessesLeft + streak);
   streak++;
-  showMap();
+  checkIfShowPopUp();
   startGame();
 }
 
@@ -87,9 +89,16 @@ function allGuessesUsed() {
     currentCountry.name.common +
     "<a>";
     */
-  $("#myModal").modal("show");
-  showMap();
+
+  checkIfShowPopUp();
   startGame();
+}
+
+function checkIfShowPopUp() {
+  if (checkbox.checked) {
+    $("#myModal").modal("show");
+    showMap();
+  }
 }
 
 function decreaseGuessesByOne() {
