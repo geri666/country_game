@@ -102,3 +102,27 @@ hr {
 #linkButBlack:hover {
     color: purple
 }
+
+.autocomplete-input {
+    width: calc(100% - 800px);
+}
+.autocomplete-list{
+    border-radius: 5px;
+    list-style-type: none;
+    text-align: center;
+    margin-left: 400px;
+    padding: 0;
+    color: black;
+    background-color: #fff;
+    width: calc(100% - 800px);
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+.autocomplete-list li{
+    position: relative;
+    padding: 5px;   
+    width: calc(100% - 800px); 
+    cursor: pointer;
+    
+}

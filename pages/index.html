@@ -40,7 +40,11 @@
                 </button> <br> <br>
                 <a id="guessesLeftLbl"></a> <br>
                 <label id="scoreLbl"></label> <br>
-                <input type="text" id="userInput" placeholder="guess here" ondblclick="fillCorrCountry()">
+                <div class="autocompleteContainer">
+                    <input type="text" id="userInput" class="autocomplete-input" placeholder="guess here" ondblclick="fillCorrCountry()">
+                    <ul class="autocomplete-list" id="country-list">
+                    </ul>
+                </div>
                 <button id="submitButton" onclick="handleUserGuess()">guess</button> <br> <br>
                 <button id="hint" onclick="newHint()">hint</button> <br>
                 <a id="hintOutput"></a>
@@ -131,4 +135,4 @@
 <script src="../scripts/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-</script>
+    </script>

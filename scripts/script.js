@@ -8,11 +8,15 @@ var called = false;
 var called1 = false;
 var called2 = false;
 var called3 = false;
+var countriesArr = [];
+const countryListElement = document.querySelector("#country-list");
+const countryInputElement = document.querySelector("#userInput");
 const MAPS_URL = "https://www.google.ch/maps/place/";
 var myModal = document.getElementById("myModal");
 
 $(document).ready(async function () {
   countries = await loadCountries();
+  loadAutocomplete();
   startGame();
 });
 
@@ -22,6 +26,7 @@ async function loadCountries() {
   return data;
 }
 
+
 async function startGame() {
   guessesLeft = 5;
   hints.length = 0;
@@ -29,7 +34,7 @@ async function startGame() {
 
   currentCountry = countries[getRandomInt(countries.length)];
   minusHintPoint();
-  document.getElementById("flagContainer").src = currentCountry.flags.svg; // ty wiz you're the best
+  document.getElementById("flagContainer").src = currentCountry.flags.svg;
   document.getElementById("scoreLbl").innerHTML = "score: " + score;
 }
 
@@ -186,3 +191,39 @@ function minusHintPoint() {
 function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
+
+
+function loadAutocomplete() {
+  fetch("https://restcountries.com/v3.1/all")
+    .then((response) => response.json())
+    .then((data) => {
+      countriesArr = data.map((x) => x.name.common);
+      countriesArr.sort();
+      loadList(countriesArr, countryListElement);
+    });
+}
+
+function loadList(data, element) {
+  if (data) {
+    element.innerHTML = "";
+    let innerElement = "";
+    data.forEach((item) => {
+      innerElement += `
+        <li>${item}</li>
+        `;
+    });
+    element.innerHTML = innerElement;
+  }
+
+}
+
+
+function filterList(data, inputText) {
+  return data.filter((x) => x.toLowerCase().includes(inputText.toLowerCase()));  
+
+}
+
+countryInputElement.addEventListener("input", function () {
+    const filteredData = filterList(countriesArr, countryInputElement.value);
+    loadList(filteredData, countryListElement);
+});
