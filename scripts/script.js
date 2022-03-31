@@ -231,7 +231,7 @@ countryInputElement.addEventListener("input", function () {
 
 
 function fillTextField() {
-  $('#country-list').dblclick(function () {
+  $('#country-list').click(function () {
     var listItems = document.querySelectorAll("ul li");
 
     listItems.forEach(function (item) {
