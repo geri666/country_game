@@ -200,6 +200,7 @@ function loadAutocomplete() {
       countriesArr = data.map((x) => x.name.common);
       countriesArr.sort();
       loadList(countriesArr, countryListElement);
+      fillTextField();
     });
 }
 
@@ -219,11 +220,24 @@ function loadList(data, element) {
 
 
 function filterList(data, inputText) {
-  return data.filter((x) => x.toLowerCase().includes(inputText.toLowerCase()));  
+  return data.filter((x) => x.toLowerCase().includes(inputText.toLowerCase()));
 
 }
 
 countryInputElement.addEventListener("input", function () {
-    const filteredData = filterList(countriesArr, countryInputElement.value);
-    loadList(filteredData, countryListElement);
+  const filteredData = filterList(countriesArr, countryInputElement.value);
+  loadList(filteredData, countryListElement);
 });
+
+
+function fillTextField() {
+  $('#country-list').dblclick(function () {
+    var listItems = document.querySelectorAll("ul li");
+
+    listItems.forEach(function (item) {
+      item.onclick = function (e) {
+        document.getElementById("userInput").value = this.innerText;
+      }
+    });
+  });
+}
