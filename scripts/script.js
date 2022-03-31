@@ -54,8 +54,8 @@ function countryGuessed() {
   document.getElementById("afterGameTitle").innerHTML = "country guessed!";
   document.getElementById("afterGameMain").innerHTML =
     "it took you " +
-    guessesLeft +
-    " guesses to guess " +
+    (6 - guessesLeft) +
+    " guess(es) to guess " +
     currentCountry.name.common.toLowerCase();
   /*
     document.getElementById("afterGameMain").innerHTML +=
