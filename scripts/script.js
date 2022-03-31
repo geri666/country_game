@@ -101,6 +101,10 @@ function checkIfShowPopUp() {
   }
 }
 
+function enableAfterRoundPopUp() {
+  checkbox.checked = true;
+}
+
 function decreaseGuessesByOne() {
   guessesLeft--;
   document.getElementById("guessesLeftLbl").innerHTML =

@@ -68,10 +68,11 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">flagle rules</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">welcome to flagle</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                    <p>rules</p>
                     <p class="pop-up-text">
                         guess the displayed flag by typing the country in the text field <br>
                         click on the flag to enhance <br>
@@ -79,7 +80,11 @@
                         hints can be used for 50 points <br>
                         there are 4 hints
                     </p>
-
+                    <hr>
+                    <p>settings</p>
+                    <button onclick="enableAfterRoundPopUp()">
+                        re-enable popups
+                    </button>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
@@ -116,7 +121,7 @@
                         <span id="place"></span>
                     </div> <br>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" getChecked()>
                         <label class="form-check-label" for="flexCheckChecked">
                             <p class="checkBoxText">show after every round</p>
                         </label>
