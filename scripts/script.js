@@ -211,6 +211,7 @@ function loadAutocomplete() {
     .then((data) => {
       countriesArr = data.map((x) => x.name.common);
       countriesArr.sort();
+      countriesArr = countriesArr.map(replaceInArray);
       loadList(countriesArr, countryListElement);
       fillTextField();
     });
@@ -220,7 +221,7 @@ function loadList(data, element) {
   if (data) {
     element.innerHTML = "";
     let innerElement = "";
-    data.forEach((item) => {
+    data.forEach((item) => { 
       innerElement += `
         <li>${item}</li>
         `;
@@ -233,11 +234,9 @@ function loadList(data, element) {
 function showAutocomplete() {
   
     if (countryInputElement == document.activeElement) {
-      console.log("focused");
       loadAutocomplete();
     }
     else {
-      console.log("not focused");
       countryListElement.innerHTML = "";  
     }
 }
@@ -265,3 +264,9 @@ function fillTextField() {
     });
   });
 }
+
+
+var replaceInArray = function(str){
+  return str.replace(/\s+/g, "&nbsp;");
+}
+
