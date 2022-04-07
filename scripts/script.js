@@ -185,7 +185,6 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
-
 function loadAutocomplete() {
   fetch("https://restcountries.com/v3.1/all")
     .then((response) => response.json())
@@ -208,25 +207,20 @@ function loadList(data, element) {
     });
     element.innerHTML = innerElement;
   }
-
 }
 
 function showAutocomplete() {
-  
-    if (countryInputElement == document.activeElement) {
-      console.log("focused");
-      loadAutocomplete();
-    }
-    else {
-      console.log("not focused");
-      countryListElement.innerHTML = "";  
-    }
+  if (countryInputElement == document.activeElement) {
+    console.log("focused");
+    loadAutocomplete();
+  } else {
+    console.log("not focused");
+    countryListElement.innerHTML = "";
+  }
 }
-
 
 function filterList(data, inputText) {
   return data.filter((x) => x.toLowerCase().includes(inputText.toLowerCase()));
-
 }
 
 countryInputElement.addEventListener("input", function () {
@@ -234,15 +228,11 @@ countryInputElement.addEventListener("input", function () {
   loadList(filteredData, countryListElement);
 });
 
-
 function fillTextField() {
-  $('#country-list').click(function () {
-    var listItems = document.querySelectorAll("ul li");
-
-    listItems.forEach(function (item) {
-      item.onclick = function (e) {
-        document.getElementById("userInput").value = this.innerText;
-      }
-    });
+  var listItems = document.querySelectorAll("ul li");
+  listItems.forEach(function (item) {
+    item.onclick = function (e) {
+      document.getElementById("userInput").value = this.innerText;
+    };
   });
 }

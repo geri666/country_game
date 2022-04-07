@@ -27,7 +27,7 @@
                     ❔
                 </button>
                 <hr>
-            </div>
+            </div>  
 
             <div class="col"></div>
         </div>
@@ -42,7 +42,7 @@
                 <label id="scoreLbl"></label> <br>
                 <input type="text" id="userInput" class="autocomplete-input" placeholder="guess here"
                     ondblclick="fillCorrCountry()">
-                <ul class="autocomplete-list" id="country-list">
+                <ul class="autocomplete-list" id="country-list" onclick="fillTextField()">
                 </ul>
                 <button id="submitButton" onclick="handleUserGuess()">guess</button>
                 <button id="submitButton" onclick="newHint()">hint</button> <br>
