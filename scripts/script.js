@@ -28,13 +28,12 @@ async function loadCountries() {
   return data;
 }
 
-
 async function startGame() {
   guessesLeft = 5;
   hints.length = 0;
   resetLabels();
 
-  currentCountry = countries[getRandomInt(countries.length)];
+  currentCountry = countries[getRandomInt(countries.length - 1)];
   minusHintPoint();
   document.getElementById("flagContainer").src = currentCountry.flags.svg;
   document.getElementById("scoreLbl").innerHTML = "score: " + score;
@@ -62,15 +61,6 @@ function countryGuessed() {
     (6 - guessesLeft) +
     " guess(es) to guess " +
     currentCountry.name.common.toLowerCase();
-  /*
-    document.getElementById("afterGameMain").innerHTML +=
-    " <br> open with google maps:<br>" +
-    "<a id='linkButBlack' href ='https://www.google.ch/maps/place/" +
-    currentCountry.name.common +
-    "' target='_blank'>https://www.google.ch/maps/place/" +
-    currentCountry.name.common +
-    "<a>"; 
-    */
 
   score = score + 100 * (guessesLeft + streak);
   streak++;
@@ -85,15 +75,6 @@ function allGuessesUsed() {
     "aw! you'll get it next time";
   document.getElementById("afterGameMain").innerHTML =
     "the country was " + currentCountry.name.common.toLowerCase();
-  /*
-    document.getElementById("afterGameMain").innerHTML +=
-    " <br> open with google maps:<br>" +
-    "<a id='linkButBlack' href ='https://www.google.ch/maps/place/" +
-    currentCountry.name.common +
-    "' target='_blank'>https://www.google.ch/maps/place/" +
-    currentCountry.name.common +
-    "<a>";
-    */
 
   checkIfShowPopUp();
   startGame();
