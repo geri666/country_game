@@ -18,7 +18,6 @@ var myModal = document.getElementById("myModal");
 
 $(document).ready(async function () {
   countries = await loadCountries();
-  loadAutocomplete();
   startGame();
 });
 
@@ -229,6 +228,18 @@ function loadList(data, element) {
     element.innerHTML = innerElement;
   }
 
+}
+
+function showAutocomplete() {
+  
+    if (countryInputElement == document.activeElement) {
+      console.log("focused");
+      loadAutocomplete();
+    }
+    else {
+      console.log("not focused");
+      countryListElement.innerHTML = "";  
+    }
 }
 
 
