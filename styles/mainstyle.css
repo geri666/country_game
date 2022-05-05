@@ -1,11 +1,11 @@
 :root {
     --main-bg-color: rgb(30, 30, 30);
-    --main-text-color: rgb(230, 230, 230);
+    --main-text-color: rgb(230, 230, 230)
 }
 
 @font-face {
     font-family: mainfont;
-    src: url(../fonts/rockford_sans/RockfordSans-Light.otf);
+    src: url(../fonts/rockford_sans/RockfordSans-Light.otf)
 }
 
 body {
@@ -13,14 +13,121 @@ body {
     color: var(--main-text-color);
     text-align: center;
     font-family: mainfont;
-    font-weight: bold;
+    font-weight: bold
 }
 
 h1 {
-    padding: 0.5em;
+    display: inline-block;
+    padding-top: 0.5em
+}
+
+a {
+    color: var(--main-text-color);
+    text-decoration: none
+}
+
+a:hover {
+    color: purple
+}
+
+button {
+    background-color: white;
+    border-radius: 5px
+}
+
+hr {
+    border: none
+}
+
+.col {
+    position: relative
+}
+
+.map {
+    text-align: center
+}
+
+.smallButton {
+    position: absolute;
+    right: 0;
+    top: 30%
+}
+
+.transparentButton {
+    color: transparent;
+    background-color: transparent;
+    border-color: transparent
+}
+
+.pop-up-text{
+    font-weight: 100
+}
+
+.checkBoxText {
+    font-weight: 100;
+    color: black
 }
 
 #flagContainer {
     max-width: 250px;
-    max-height: auto;
+    max-height: auto
+}
+
+#userInput {
+    background-color: white;
+    border-radius: 5px
+}
+
+#submitButton {
+    width: 138px
+}
+
+#footer {
+    position: absolute;
+    bottom: 0
+}
+
+#modalImg {
+    width: 100%
+}
+
+.modal-body {
+    text-align: left;
+    color: black
+}
+
+.modal-title {
+    color: black
+}
+
+#linkButBlack {
+    color: black
+}
+
+#linkButBlack:hover {
+    color: purple
+}
+
+.autocomplete-input {
+    width: calc(100% - 800px);
+}
+.autocomplete-list{
+    border-radius: 5px;
+    list-style-type: none;
+    text-align: center;
+    margin-left: 400px;
+    padding: 0;
+    color: black;
+    background-color: #fff;
+    width: calc(100% - 800px);
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+.autocomplete-list li{
+    position: relative;
+    padding: 5px;   
+    width: calc(100% - 800px); 
+    cursor: pointer;
+    
 }
